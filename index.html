@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تهنئة رمضان</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #c0b8cf;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: rgb(145, 121, 172);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 350px;
+        }
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .message {
+            margin-top: 15px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>ادخل اسمك</h2>
+        <input type="text" id="nameInput" placeholder="أدخل اسمك هنا">
+        <button onclick="showGreeting()">عرض التهنئة</button>
+        <p class="message" id="greetingMessage"></p>
+    </div>
+
+    <script>
+        function showGreeting() {
+            let name = document.getElementById("nameInput").value.trim();
+            let message = name ? `رمضان كريم يا ${name}! 🌙✨❤️ أعاده الله عليك بالخير والبركات.` : "الرجاء إدخال اسمك أولاً!";
+            document.getElementById("greetingMessage").innerText = message;
+        }
+    </script>
+</body>
+</html>
