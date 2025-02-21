@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,61 +8,108 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #c0b8cf;
+            background-color: #000000;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            direction: rtl;
         }
         .container {
-            background: rgb(145, 121, 172);
+            background: rgb(124, 122, 127);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 90%;
             max-width: 350px;
         }
-        input {
+        input, button {
             padding: 10px;
             margin: 10px 0;
             width: 100%;
             border: 1px solid #ccc;
             border-radius: 5px;
+            box-sizing: border-box;
+            text-align: center;
+            direction: rtl;
         }
+        
         button {
             background-color: #28a745;
             color: white;
             border: none;
-            padding: 10px;
             cursor: pointer;
-            border-radius: 5px;
-            width: 100%;
             font-size: 16px;
+            text-align: center;
+            transition: 0.3s;
         }
+        
         button:hover {
             background-color: #218838;
+            transform: scale(1.05);
         }
+
         .message {
             margin-top: 15px;
-            font-size: 18px;
-            color: #333;
+            font-size: 22px;
+            color: #1f0e48;
+            text-align: center;
+            direction: rtl;
+            white-space: pre-line;
+            opacity: 0; /* إخفاء النص مبدئيًا */
+            transform: translateY(20px); /* انزلاق لأسفل قبل الظهور */
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        /* عندما يتم إضافة كلاس "show" إلى العنصر، يتم تشغيل الأنيميشن */
+        .message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* تأثير نبض بسيط بعد الظهور */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .message.pulse {
+            animation: pulse 1s infinite alternate ease-in-out;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>ادخل اسمك</h2>
+        <h2>من فضلك أدخل اسمك</h2>
         <input type="text" id="nameInput" placeholder="أدخل اسمك هنا">
-        <button onclick="showGreeting()">عرض التهنئة</button>
+        <button onclick="showGreeting()">عرض</button>
         <p class="message" id="greetingMessage"></p>
     </div>
 
     <script>
         function showGreeting() {
             let name = document.getElementById("nameInput").value.trim();
-            let message = name ? `رمضان كريم يا ${name}! 🌙✨❤️ أعاده الله عليك بالخير والبركات.` : "الرجاء إدخال اسمك أولاً!";
-            document.getElementById("greetingMessage").innerText = message;
+            let messageElement = document.getElementById("greetingMessage");
+
+            let message = name 
+                ? `🌙✨ رمضان كريم يا ${name}! ✨🌙  
+نسأل الله أن يملأ قلبك بالنور والطمأنينة، وأن يرزقك الخير والبركات.  
+🤲🌟 أسأل الله أن يتقبل منك الصيام والقيام، ويجعل أيامك مليئة بالسعادة والمغفرة. 💖`
+                : "⚠️ الرجاء إدخال اسمك أولاً للاستمتاع بالرسالة المميزة! 🙏";
+
+            messageElement.innerText = message;
+
+            // إضافة كلاس "show" لبدء الأنيميشن
+            messageElement.classList.add("show");
+
+            // إذا كان هناك اسم مدخل، أضف تأثير النبض
+            if (name) {
+                messageElement.classList.add("pulse");
+            } else {
+                messageElement.classList.remove("pulse");
+            }
         }
     </script>
 </body>
